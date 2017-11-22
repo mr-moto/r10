@@ -1,23 +1,37 @@
 import React, { Component } from "react";
-import { Text, ActivityIndicator } from "react-native";
+import { connect } from "react-redux";
+
+import { ActivityIndicator } from "react-native";
+
+import { fetchSession } from "../../redux/modules/sessions";
+import Schedule from "./Schedule";
 
 class ScheduleContainer extends Component {
 
-    static route = {
-        navigationBar: {
-            title: 'Schedule'
-        }
+    componentDidMount() {
+        this.props.dispatch(fetchSession());
     }
 
-
-    state = {
-        
+    static route = {
+        navigationBar: {
+            title: "Schedule"
+        }
     };
 
     render() {
-        return <Text>Hello</Text>
-
+        const { isLoading, sessionData } = this.props;
+        console.log(sessionData);
+        return isLoading ? (
+            <ActivityIndicator size="large" color="skyblue" animating={true} />
+        ) : (
+            <Schedule data={sessionData} />
+        );
     }
 }
 
-export default ScheduleContainer;
+const mapStateToProps = state => ({
+    sessionData: state.session.sessionData,
+    isLoading: state.session.isLoading
+});
+
+export default connect (mapStateToProps)(ScheduleContainer);
