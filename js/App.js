@@ -5,12 +5,30 @@
  */
 
 import React, { Component } from "react";
-import About from "./scenes/About/";
+import {
+    NavigationProvider,
+    StackNavigation,
+    NavigationContext
+} from "@expo/ex-navigation";
+import { Provider } from "react-redux";
+import Router from "./navigation/routes";
 
-class App extends Component<{}> {
-  render() {
-    return <h1 id="title">Hello, world!</h1>
-  }
+import Store from "./redux/store";
+
+const navigationContext = new NavigationContext({
+    router: Router,
+    store: Store
+});
+class App extends Component {
+    render() {
+        return (
+            <Provider store={Store}>
+                <NavigationProvider context={navigationContext}>
+                    <StackNavigation navigatorUID="root" id="root" initialRoute={Router.getRoute("layout")} />
+                </NavigationProvider>
+            </Provider>
+        );
+    }
 }
 
 export default App;
