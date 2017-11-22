@@ -1,3 +1,5 @@
+import { formatSessionData } from '../../lib//jsonHelpers'
+
 // NAME YOUR ACTIONS
 const GET_SESSION = "GET_SESSION";
 
@@ -9,6 +11,7 @@ export const fetchSession = () => {
     return dispatch =>
         fetch("https://r10app-95fea.firebaseio.com/sessions.json")
             .then(response => response.json())
+            .then(data => formatSessionData(data))
             .then(session => dispatch(getSession(session)));
 };
 

@@ -1,10 +1,29 @@
-import React from 'react';
-import { Text } from "react-native";
+import React from "react";
+import Moment from "moment";
+import { Text, SectionList, View } from "react-native";
 
-const Schedule = ({data}) => {
-    let key = 0;
+const Schedule = ({ data }) => {
     return (
-        <Text>Schdule component</Text >
-    )
-}
+        <SectionList
+            renderItem={({ item }) => {
+                return (
+                    <View>
+                        <Text>{item.title}</Text>
+                        <Text>{item.location}</Text>
+                    </View>
+                );
+            }}
+            renderSectionHeader={item => {
+                return (
+                    <Text>
+                        {Moment.unix(item.section.title).format("h:mm A")}
+                    </Text>
+                );
+            }}
+            sections={data}
+            keyExtractor={item => item.title}
+            ItemSeparatorComponent={() => <View />}
+        />
+    );
+};
 export default Schedule;
