@@ -26,30 +26,57 @@ class NavigationLayout extends Component {
                 tabBarColor="black"
             >
                 <TabItem
-                    id="about"
-                    title="About"
-                    renderTitle={this.renderTitle}
-                    renderIcon={isSelected =>
-                        this.renderIcon("ios-information-circle", isSelected)}
-                >
-                    <StackNavigation
-                        id="about"
-                        navigatorUID="about"
-                        initialRoute={Router.getRoute("about")}
-                    />
-                </TabItem>
-
-                <TabItem
                     id="schedule"
                     title="Schedule"
                     renderTitle={this.renderTitle}
                     renderIcon={isSelected =>
-                        this.renderIcon("ios-calendar", isSelected)}
+                        this.renderIcon("ios-calendar", isSelected)
+                    }
                 >
                     <StackNavigation
                         id="schedule"
                         navigatorUID="schedule"
                         initialRoute={Router.getRoute("schedule")}
+                    />
+                </TabItem>
+                <TabItem
+                    id="map"
+                    title="Map"
+                    renderTitle={this.renderTitle}
+                    renderIcon={isSelected =>
+                        this.renderIcon("ios-map", isSelected)}
+                >
+                    <StackNavigation
+                        id="map"
+                        navigatorUID="map"
+                        initialRoute={Router.getRoute("map")}
+                    />
+                </TabItem>
+                <TabItem
+                    id="faves"
+                    title="Faves"
+                    renderTitle={this.renderTitle}
+                    renderIcon={isSelected =>
+                        this.renderIcon("ios-heart", isSelected)}
+                >
+                    <StackNavigation
+                        id="faves"
+                        navigatorUID="faves"
+                        initialRoute={Router.getRoute("faves")}
+                    />
+                </TabItem>
+                <TabItem
+                    id="about"
+                    title="About"
+                    renderTitle={this.renderTitle}
+                    renderIcon={isSelected =>
+                        this.renderIcon("ios-information-circle", isSelected)
+                    }
+                >
+                    <StackNavigation
+                        id="about"
+                        navigatorUID="about"
+                        initialRoute={Router.getRoute("about")}
                     />
                 </TabItem>
             </TabNavigation>

@@ -27,9 +27,8 @@ const Schedule = ({ data, currentNavigatorUID }) => {
                                 <Icon 
                                     size={16}
                                     name={Platform.OS === 'ios' ? "ios-heart" : "md-heart"}
-                                    color={'red'}
+                                    style={styles.scheduleHeart}
                                 />
-                                <Text style={styles.scheduleHeart}>+</Text>
                             </View>
                         </View>
                     </TouchableOpacity>

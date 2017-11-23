@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     },
     scheduleHeart: {
         margin: 12,
-        marginTop: 5
+        marginTop: 5,
+        color: "red"
     }
 });
