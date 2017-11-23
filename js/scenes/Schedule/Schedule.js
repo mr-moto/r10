@@ -1,6 +1,7 @@
 import React from "react";
 import Moment from "moment";
-import { Text, SectionList, View, TouchableOpacity } from "react-native";
+import { Text, SectionList, View, TouchableOpacity, Platform } from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { goToSession } from '../../lib/navigationHelpers';
 import { styles } from "./styles";
@@ -23,6 +24,11 @@ const Schedule = ({ data, currentNavigatorUID }) => {
                                 <Text style={styles.scheduleLocation}>
                                     {item.location}
                                 </Text>
+                                <Icon 
+                                    size={16}
+                                    name={Platform.OS === 'ios' ? "ios-heart" : "md-heart"}
+                                    color={'red'}
+                                />
                                 <Text style={styles.scheduleHeart}>+</Text>
                             </View>
                         </View>
