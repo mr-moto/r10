@@ -6,8 +6,9 @@ import { ActivityIndicator } from "react-native";
 import { fetchSession } from "../../redux/modules/sessions";
 import Schedule from "./Schedule";
 
-class ScheduleContainer extends Component {
+import { styles } from "./styles";
 
+class ScheduleContainer extends Component {
     componentDidMount() {
         this.props.dispatch(fetchSession());
     }
@@ -19,19 +20,22 @@ class ScheduleContainer extends Component {
     };
 
     render() {
-        const { isLoading, sessionData } = this.props;
-        console.log(sessionData);
+        const { isLoading, sessionData, currentNavigatorUID } = this.props;
         return isLoading ? (
             <ActivityIndicator size="large" color="skyblue" animating={true} />
         ) : (
-            <Schedule data={sessionData} />
+            <Schedule
+                data={sessionData}
+                currentNavigatorUID={currentNavigatorUID}
+            />
         );
     }
 }
 
 const mapStateToProps = state => ({
     sessionData: state.session.sessionData,
-    isLoading: state.session.isLoading
+    isLoading: state.session.isLoading,
+    currentNavigatorUID: state.navigation.currentNavigatorUID
 });
 
-export default connect (mapStateToProps)(ScheduleContainer);
+export default connect(mapStateToProps)(ScheduleContainer);
