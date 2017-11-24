@@ -3,11 +3,19 @@ import Store from "../redux/store";
 import Router from "../navigation/routes";
 
 export const goToSession = (currentNavigatorUID, sessionData) => {
-    console.log('clicked')
+    console.log("clicked");
     Store.dispatch(
         NavigationActions.push(
             currentNavigatorUID,
             Router.getRoute("session", { sessionData })
+        )
+    );
+};
+export const goToSpeaker = speakerData => {
+    Store.dispatch(
+        NavigationActions.push(
+            "root",
+            Router.getRoute("speaker", { speakerData })
         )
     );
 };

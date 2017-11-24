@@ -1,13 +1,23 @@
 import React from "react";
-import { Text, View, TouchableHighlight, Image } from "react-native";
+import { Text, View, TouchableHighlight, Image, Platform } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 
-const Session = ({ sessionData }) => {
+import { goToSpeaker } from '../../lib/navigationHelpers';
+
+import { styles } from "./styles";
+
+const Session = ({ sessionData, speaker, currentNavigatorUID }) => {
+    console.log(speaker);
     return (
         <View>
             <View>
                 <Text>{sessionData.location}</Text>
-                <Text>+</Text>
+                <Icon
+                    size={16}
+                    name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+                    style={styles.scheduleHeart}
+                />
             </View>
             <View>
                 <Text>{sessionData.title}</Text>
@@ -16,7 +26,25 @@ const Session = ({ sessionData }) => {
             </View>
             <View>
                 <Text>Presented by</Text>
-                {/* speaker data here */}
+                {speaker ? (
+                    <TouchableHighlight
+                        onPress={() => goToSpeaker(speaker)}
+                    >
+                        <View>
+                            <Image
+                                style={{
+                                    width: 60,
+                                    height: 60,
+                                    borderRadius: 30
+                                }}
+                                source={{ uri: `${speaker.image}` }}
+                            />
+                            <Text>{speaker.name}</Text>
+                        </View>
+                    </TouchableHighlight>
+                ) : (
+                    false
+                )}
             </View>
         </View>
     );

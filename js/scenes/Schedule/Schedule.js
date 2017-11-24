@@ -8,7 +8,6 @@ import { styles } from "./styles";
 
 
 const Schedule = ({ data, currentNavigatorUID }) => {
-    console.log(currentNavigatorUID)
     return (
         <SectionList
             renderItem={({ item }) => {
