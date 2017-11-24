@@ -2,6 +2,7 @@ import React from "react";
 import { Text, ScrollView, FlatList, View, Image } from "react-native";
 import PropTypes from "prop-types";
 import Logo from "../../components/Logo";
+import ConductList from '../../components/Conduct'
 import styles from "./styles";
 
 const About = ({ data }) => {
@@ -22,7 +23,7 @@ const About = ({ data }) => {
                     in Vancouver, BC.
                 </Text>
                 <Text style={styles.heading}>Code of Conduct</Text>
-                {data.map(item => {
+                {/* {data.map(item => {
                     return (
                         <View key={key++}>
                             <Text style={styles.subHeading}>
@@ -33,7 +34,8 @@ const About = ({ data }) => {
                             </Text>
                         </View>
                     );
-                })}
+                })} */}
+                <ConductList data={data} />
             </View>
         </ScrollView>
     );
