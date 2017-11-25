@@ -8,7 +8,6 @@ import { goToSpeaker } from '../../lib/navigationHelpers';
 import { styles } from "./styles";
 
 const Session = ({ sessionData, speaker, currentNavigatorUID }) => {
-    console.log(speaker);
     return (
         <View>
             <View>

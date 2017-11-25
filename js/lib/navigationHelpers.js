@@ -19,3 +19,9 @@ export const goToSpeaker = speakerData => {
         )
     );
 };
+export const closeSpeaker = () => {
+    console.log('lcikedadsf')
+  Store.dispatch(NavigationActions.pop(
+    'root'
+  ));
+}
