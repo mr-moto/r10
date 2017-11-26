@@ -1,17 +1,28 @@
 import React from "react";
-import { Text, View, TouchableHighlight, Image, Platform } from "react-native";
+import {
+    Text,
+    View,
+    TouchableHighlight,
+    Image,
+    Platform,
+    TouchableOpacity
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 
-import { goToSpeaker } from '../../lib/navigationHelpers';
+import Button from "../../components/Button";
+import { createFave, deleteFave } from "../../config/models";
+import { goToSpeaker } from "../../lib/navigationHelpers";
 
 import { styles } from "./styles";
 
-const Session = ({ sessionData, speaker, currentNavigatorUID }) => {
+const Session = ({ sessionData, speaker, faves }) => {
+    const isFaved = faves.indexOf(sessionData.session_id) > -1 ? true : false;
     return (
         <View>
             <View>
                 <Text>{sessionData.location}</Text>
+
                 <Icon
                     size={16}
                     name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
@@ -26,9 +37,7 @@ const Session = ({ sessionData, speaker, currentNavigatorUID }) => {
             <View>
                 <Text>Presented by</Text>
                 {speaker ? (
-                    <TouchableHighlight
-                        onPress={() => goToSpeaker(speaker)}
-                    >
+                    <TouchableHighlight onPress={() => goToSpeaker(speaker)}>
                         <View>
                             <Image
                                 style={{
@@ -45,6 +54,23 @@ const Session = ({ sessionData, speaker, currentNavigatorUID }) => {
                     false
                 )}
             </View>
+            {isFaved ? (
+                <TouchableOpacity
+                    onPress={() => deleteFave(sessionData.session_id)}
+                >
+                    <View pointerEvents="box-only">
+                        <Button buttonText={"Remove from Faves"} />
+                    </View>
+                </TouchableOpacity>
+            ) : (
+                <TouchableOpacity
+                    onPress={() => createFave(sessionData.session_id)}
+                >
+                    <View pointerEvents="box-only">
+                        <Button buttonText={"Add to Faves"} />
+                    </View>
+                </TouchableOpacity>
+            )}
         </View>
     );
 };

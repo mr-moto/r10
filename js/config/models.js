@@ -1,6 +1,6 @@
 import Realm from "realm";
 
-const Fave = {
+const Faves = {
     name: "Fave",
     primaryKey: "id",
     properties: {
@@ -9,31 +9,33 @@ const Fave = {
     }
 };
 
-const realm = new Realm({ schema: [Fave] });
+const realm = new Realm({ schema: [Faves] });
+console.log("the path is: ", realm.path);
 
-export const queryFave = () => {
-    return realm.objects("Fave");
+export const queryFaves = () => {
+    return realm.objects("Fave").map(fave => fave.id);
 };
 
-export const deleteFave = (faveId) => {
-    let fave = realm.objects('Fave').filter("id ==$0", faveId)
+export const deleteFave = id => {
+    let fav = realm.objects("Fave").filtered("id ==$0", id);
     try {
         realm.write(() => {
-            realm.delete(fave)
-        })
+            realm.delete(fav);
+        });
     } catch (e) {
-        console.log("error deleting fav", e)
+        console.log("error deleting fav", e);
     }
 };
 
 export const createFave = session_id => {
+    console.log("asdfjkasfklalkak");
     try {
         realm.write(() => {
-            realm.create("Fave", { id: session_id, faced_on: new Date() });
+            realm.create("Fave", { id: session_id, faved_on: new Date() });
         });
     } catch (e) {
-        console.log("Error on creation");
+        console.log(e);
     }
 };
 
-export default realm;
+export default new Realm({ schema: [Faves] });

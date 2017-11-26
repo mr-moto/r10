@@ -1,4 +1,4 @@
-import { queryFave } from '../../config/models';
+import { queryFaves } from '../../config/models';
 const LOAD_FAVES = 'LOAD_FAVES';
 
 export const loadFaves = (favesData) => ({
@@ -8,10 +8,7 @@ export const loadFaves = (favesData) => ({
 
 export const fetchFaves = () => {
   return (dispatch) => {
-    const favesData = queryFave().reduce((acc,curr)=>{
-      acc.push(curr.id);
-      return acc
-    }, []);
+    const favesData = queryFaves();
     dispatch(loadFaves(favesData));
   }
 }
