@@ -10,6 +10,7 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
+import PropTypes from "prop-types";
 
 import Button from "../../components/Button";
 import { createFave, deleteFave } from "../../config/models";
@@ -74,7 +75,10 @@ const Session = ({ sessionData, speaker, faves }) => {
                         <TouchableOpacity
                             onPress={() => deleteFave(sessionData.session_id)}
                         >
-                            <View pointerEvents="box-only" style={styles.buttonGradient}>
+                            <View
+                                pointerEvents="box-only"
+                                style={styles.buttonGradient}
+                            >
                                 <Text style={styles.buttonText}>
                                     Remove from Faves
                                 </Text>
@@ -94,7 +98,10 @@ const Session = ({ sessionData, speaker, faves }) => {
                         <TouchableOpacity
                             onPress={() => createFave(sessionData.session_id)}
                         >
-                            <View pointerEvents="box-only" style={styles.buttonGradient}>
+                            <View
+                                pointerEvents="box-only"
+                                style={styles.buttonGradient}
+                            >
                                 <Text style={styles.buttonText}>
                                     Add to Faves
                                 </Text>
@@ -105,6 +112,12 @@ const Session = ({ sessionData, speaker, faves }) => {
             )}
         </View>
     );
+};
+
+Session.PropTypes = {
+    sessionData: PropTypes.object,
+    speaker: PropTypes.object,
+    faves: PropTypes.array
 };
 
 export default Session;

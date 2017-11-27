@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { ActivityIndicator } from "react-native";
+import PropTypes from "prop-types";
 
 import { fetchConduct } from "../../redux/modules/conduct";
 import About from "./About";
 
 class AboutContainer extends Component {
-
     componentDidMount() {
         this.props.dispatch(fetchConduct());
     }
@@ -33,4 +32,10 @@ const mapStateToProps = state => ({
     isLoading: state.conduct.isLoading
 });
 
-export default connect (mapStateToProps)(AboutContainer);
+AboutContainer.PropTypes = {
+    fetchConduct: PropTypes.func.isRequired,
+    conductData: PropTypes.array,
+    isLoading: PropTypes.bool
+};
+
+export default connect(mapStateToProps)(AboutContainer);

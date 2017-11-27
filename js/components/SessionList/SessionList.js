@@ -8,6 +8,7 @@ import {
     Platform
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import PropTypes from "prop-types";
 
 import { goToSession } from "../../lib/navigationHelpers";
 
@@ -63,4 +64,11 @@ const SessionList = ({ listData, currentNavigatorUID, faves }) => {
         </View>
     );
 };
+
+SessionList.PropTypes = {
+    listData: PropTypes.object,
+    currentNavigatorUID: PropTypes.string,
+    faves: PropTypes.array
+};
+
 export default SessionList;

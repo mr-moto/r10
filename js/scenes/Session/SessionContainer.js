@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Session from "./Session";
 import { connect } from "react-redux";
-import { queryFaves} from'../../config/models'
+import { queryFaves } from "../../config/models";
+import PropTypes from "prop-types";
 
 import { fetchSpeaker } from "../../redux/modules/speaker";
-import {fetchFaves} from '../../redux/modules/faves'
-import realm from '../../config/models';
+import { fetchFaves } from "../../redux/modules/faves";
+import realm from "../../config/models";
 
 class SessionContainer extends Component {
     static route = {
@@ -14,19 +15,24 @@ class SessionContainer extends Component {
         }
     };
     componentDidMount = () => {
-        realm.addListener('change', this.refreshFaves);
+        realm.addListener("change", this.refreshFaves);
         this.props.dispatch(fetchSpeaker(this.props.sessionData.speaker));
         this.props.dispatch(fetchFaves());
-    }
-      refreshFaves = () => {
-    this.props.dispatch(fetchFaves())
-  }
+    };
+    refreshFaves = () => {
+        this.props.dispatch(fetchFaves());
+    };
     render() {
-        const { sessionData, singleSpeaker, faves  } = this.props;
-        return <Session sessionData={sessionData} speaker={singleSpeaker} faves={faves}/>;
+        const { sessionData, singleSpeaker, faves } = this.props;
+        return (
+            <Session
+                sessionData={sessionData}
+                speaker={singleSpeaker}
+                faves={faves}
+            />
+        );
     }
 }
-
 
 const mapStateToProps = state => {
     return {
@@ -34,5 +40,13 @@ const mapStateToProps = state => {
         faves: state.favourites.faves
     };
 };
+
+SessionContainer.PropTypes = {
+    singleSpeaker: PropTypes.object,
+    faves: PropTypes.array,
+    sessionData: PropTypes.object,
+    fetchSpeaker: PropTypes.func.isRequired,
+    fetchFaves: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps)(SessionContainer);

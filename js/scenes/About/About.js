@@ -2,11 +2,10 @@ import React from "react";
 import { Text, ScrollView, FlatList, View, Image } from "react-native";
 import PropTypes from "prop-types";
 import Logo from "../../components/Logo";
-import ConductList from '../../components/Conduct'
+import ConductList from "../../components/Conduct";
 import styles from "./styles";
 
 const About = ({ data }) => {
-    let key = 0;
     return (
         <ScrollView style={styles.container}>
             <View style={styles.test}>

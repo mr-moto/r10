@@ -10,6 +10,7 @@ import {
     TouchableHighlight
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import PropTypes from "prop-types";
 
 import { colors } from "../../config/styles";
 import { styles } from "./styles";
@@ -56,6 +57,10 @@ const Speaker = ({ speakerData }) => {
             </View>
         </ScrollView>
     );
+};
+
+Speaker.PropTypes = {
+    speakerData: PropTypes.object
 };
 
 export default Speaker;

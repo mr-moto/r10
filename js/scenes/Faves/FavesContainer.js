@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ActivityIndicator } from "react-native";
+import PropTypes from "prop-types";
 
 import SessionList from "../../components/SessionList";
 import realm from "../../config/models";
@@ -51,6 +52,14 @@ const mapStateToProps = state => {
         isLoading: state.session.isLoading,
         faves: state.favourites.faves
     };
+};
+
+FavesContainer.PropTypes = {
+    sessionData: PropTypes.object,
+    isLoading: PropTypes.bool,
+    faves: PropTypes.array,
+    fetchSession: PropTypes.func.isRequired,
+    fetchFaves: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(FavesContainer);
