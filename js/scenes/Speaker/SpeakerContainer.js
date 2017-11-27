@@ -8,10 +8,13 @@ import Speaker from "./Speaker";
 class SpeakerComponent extends Component {
     static route = {
         navigationBar: {
-            title: "About the Speaker",
-            backgroundColor: "black",
-            tintColor: "white",
-            renderLeft: () => <CloseButton />
+            // Cant get margin top 
+
+            // title: "About the Speaker",
+            // backgroundColor: "black",
+            // tintColor: "white",
+            // renderLeft: () => <CloseButton />,
+            visible: false
         }
     };
     render() {

@@ -8,6 +8,9 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
+import { colors } from '../../config/styles'
+import { styles } from './styles'
+
 class ConductItem extends Component {
     state = { showConduct: false };
 
@@ -26,15 +29,16 @@ class ConductItem extends Component {
         return (
             <View>
                 <TouchableWithoutFeedback onPress={this.toggleText}>
-                    <View>
+                    <View style={styles.titleContainer}>
                         <Icon
                             size={16}
                             name={Platform.OS === "ios" ? "ios-add" : "md-add"}
+                            color={colors.purple}
                         />
-                        <Text onPress={this.toggleText}>{data.title}</Text>
+                        <Text style={styles.title} onPress={this.toggleText}>{data.title}</Text>
                     </View>
                 </TouchableWithoutFeedback>
-                {this.state.showConduct && <Text>{data.description}</Text>}
+                {this.state.showConduct && <Text style={styles.description}>{data.description}</Text>}
             </View>
         );
     }

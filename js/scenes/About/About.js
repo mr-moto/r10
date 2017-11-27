@@ -23,18 +23,6 @@ const About = ({ data }) => {
                     in Vancouver, BC.
                 </Text>
                 <Text style={styles.heading}>Code of Conduct</Text>
-                {/* {data.map(item => {
-                    return (
-                        <View key={key++}>
-                            <Text style={styles.subHeading}>
-                                + {item.title}
-                            </Text>
-                            <Text style={styles.itemContent}>
-                                {item.description}
-                            </Text>
-                        </View>
-                    );
-                })} */}
                 <ConductList data={data} />
             </View>
         </ScrollView>

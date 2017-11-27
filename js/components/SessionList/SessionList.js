@@ -29,19 +29,18 @@ const SessionList = ({ listData, currentNavigatorUID, faves }) => {
                                 <Text style={styles.scheduleLocation}>
                                     {item.location}
                                 </Text>
-                                {faves.indexOf(item.session_id) > -1 &&
-                                    Platform.OS === "ios" && (
-                                        <Icon
-                                            style={styles.heart}
-                                            name={
-                                                Platform.OS === "ios"
-                                                    ? "ios-heart"
-                                                    : "md-heart"
-                                            }
-                                            size={20}
-                                            color="red"
-                                        />
-                                    )}
+                                {faves.indexOf(item.session_id) > -1 && (
+                                    <Icon
+                                        style={styles.heart}
+                                        name={
+                                            Platform.OS === "ios"
+                                                ? "ios-heart"
+                                                : "md-heart"
+                                        }
+                                        size={20}
+                                        color="red"
+                                    />
+                                )}
                             </View>
                         </View>
                     </TouchableOpacity>

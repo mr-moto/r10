@@ -8,9 +8,20 @@ import {
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
+import HeaderGradient from '../components/HeaderGradient/'
 import { colors, typography } from "../config/styles";
 import Router from "./routes";
 
+
+const defaultRouteConfig = {
+  navigationBar: {
+    tintColor: 'white',
+    titleStyle: {fontFamily: typography.fontRegular},
+    renderBackground: () => (
+      <HeaderGradient colors={[colors.purple, colors.red]}/>
+    )
+  }
+}
 class NavigationLayout extends Component {
     static route = {
         navigationBar: {
@@ -37,6 +48,7 @@ class NavigationLayout extends Component {
                         id="about"
                         navigatorUID="about"
                         initialRoute={Router.getRoute("about")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </DrawerNavigationItem>
                 <DrawerNavigationItem
@@ -50,6 +62,7 @@ class NavigationLayout extends Component {
                         id="schedule"
                         navigatorUID="schedule"
                         initialRoute={Router.getRoute("schedule")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </DrawerNavigationItem>
                 <DrawerNavigationItem
@@ -63,6 +76,7 @@ class NavigationLayout extends Component {
                         id="faves"
                         navigatorUID="faves"
                         initialRoute={Router.getRoute("faves")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </DrawerNavigationItem>
             </DrawerNavigation>

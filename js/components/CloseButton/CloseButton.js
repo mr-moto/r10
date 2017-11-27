@@ -7,11 +7,14 @@ import { closeSpeaker } from "../../lib/navigationHelpers";
 
 const CloseButton = () => {
     return (
-        <TouchableOpacity onPress={() => closeSpeaker()} style={{marginLeft: 8}}>
+        <TouchableOpacity
+            onPress={() => closeSpeaker()}
+            style={{ position: "absolute", bottom: "25%", left: 15 }}
+        >
             {Platform.OS === "ios" ? (
-                <Icon name={"ios-close"} color="white" size={42} />
+                <Icon name={"ios-close"} color="white" size={38} />
             ) : (
-                <Icon name={"md-close"} color="white" size={42} />
+                <Icon name={"md-close"} color="white" size={38} />
             )}
         </TouchableOpacity>
     );

@@ -5,49 +5,56 @@ import {
     Image,
     TouchableOpacity,
     Linking,
-    Dimensions
+    Dimensions,
+    ScrollView,
+    TouchableHighlight
 } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
+
+import { colors } from "../../config/styles";
+import { styles } from "./styles";
+import CloseButton from "../../components/CloseButton";
 
 const Speaker = ({ speakerData }) => {
-    const width = Dimensions.get("window").width;
-    const height = Dimensions.get("window").height;
     return (
-        <View
-            style={{
-                backgroundColor: "black",
-                padding: 10,
-                height: height,
-                width: width
-            }}
-        >
-            <View>
-                <Text style={{ color: "white" }}>header</Text>
+        <ScrollView>
+            <View style={styles.header}>
+                <CloseButton />
+                <Text style={styles.headerTitle}>About the Speaker</Text>
             </View>
-            <View
-                style={{
-                    backgroundColor: "white",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: 5
-                }}
-            >
-                <Image
-                    style={{
-                        width: 60,
-                        height: 60,
-                        borderRadius: 30
-                    }}
-                    source={{ uri: `${speakerData.image}` }}
-                />
-                <Text> {speakerData.name} </Text>
-                <Text> {speakerData.bio} </Text>
-                <TouchableOpacity
-                    onPress={() => Linking.openURL(`${speakerData.url}`)}
-                >
-                    <Text>Read More on Wikipedia </Text>
-                </TouchableOpacity>
+            <View style={styles.speakerBg}>
+                <View style={styles.speakerCard}>
+                    <Image
+                        style={styles.speakerImage}
+                        source={{ uri: `${speakerData.image}` }}
+                    />
+                    <Text style={styles.speakerName}> {speakerData.name} </Text>
+                    <Text style={styles.speakerBio}> {speakerData.bio} </Text>
+                    <View style={styles.buttonContainer}>
+                        <LinearGradient
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            locations={[0, 1]}
+                            colors={[colors.purple, colors.blue]}
+                            style={styles.buttonGradient}
+                        >
+                            <TouchableHighlight
+                                onPress={() =>
+                                    Linking.openURL(`${speakerData.url}`)
+                                }
+                                underlayColor={colors.purple}
+                            >
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>
+                                        Read More on Wikipedia
+                                    </Text>
+                                </View>
+                            </TouchableHighlight>
+                        </LinearGradient>
+                    </View>
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
