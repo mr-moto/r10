@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 10
     },
+    icon: {
+        color: colors.purple
+    },
     title: {
         color: colors.purple,
         marginLeft: 15,
