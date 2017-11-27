@@ -5,6 +5,7 @@ import { queryFaves} from'../../config/models'
 
 import { fetchSpeaker } from "../../redux/modules/speaker";
 import {fetchFaves} from '../../redux/modules/faves'
+import realm from '../../config/models';
 
 class SessionContainer extends Component {
     static route = {
@@ -13,12 +14,15 @@ class SessionContainer extends Component {
         }
     };
     componentDidMount = () => {
+        realm.addListener('change', this.refreshFaves);
         this.props.dispatch(fetchSpeaker(this.props.sessionData.speaker));
         this.props.dispatch(fetchFaves());
     }
+      refreshFaves = () => {
+    this.props.dispatch(fetchFaves())
+  }
     render() {
         const { sessionData, singleSpeaker, faves  } = this.props;
-        console.log(queryFaves())
         return <Session sessionData={sessionData} speaker={singleSpeaker} faves={faves}/>;
     }
 }

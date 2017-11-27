@@ -52,6 +52,19 @@ class NavigationLayout extends Component {
                         initialRoute={Router.getRoute("schedule")}
                     />
                 </DrawerNavigationItem>
+                <DrawerNavigationItem
+                    id="faves"
+                    selectedStyle={styles.selectedItemStyle}
+                    renderTitle={isSelected =>
+                        this._renderTitle("faves", isSelected)
+                    }
+                >
+                    <StackNavigation
+                        id="faves"
+                        navigatorUID="faves"
+                        initialRoute={Router.getRoute("faves")}
+                    />
+                </DrawerNavigationItem>
             </DrawerNavigation>
         );
     }

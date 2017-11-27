@@ -1,44 +1,56 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { ActivityIndicator } from "react-native";
 
-import Faves from './Faves'
-import realm from '../../config/models';
-import { fetchFaves } from '../../redux/modules/faves';
+import SessionList from "../../components/SessionList";
+import realm from "../../config/models";
+import { fetchSession } from "../../redux/modules/sessions";
+import { fetchFaves } from "../../redux/modules/faves";
+import { formatSessionData } from "../../lib/dataHelpers";
 class FavesContainer extends Component {
-  static route = {
-    navigationBar: {
-      title: 'Favourites',
+    componentDidMount = () => {
+        realm.addListener("change", this.refreshFaves);
+        this.props.dispatch(fetchSession());
+        this.props.dispatch(fetchFaves());
+    };
+    refreshFaves = () => {
+        this.props.dispatch(fetchFaves());
+    };
+
+    static route = {
+        navigationBar: {
+            title: "Faves"
+        }
+    };
+
+    render() {
+        const { isLoading, sessionData, faves } = this.props;
+
+        const flatSessionList = [];
+        sessionData.map(a => a.data.map(b => flatSessionList.push(b)));
+
+        const favesList = flatSessionList.filter(session => {
+            return faves.indexOf(session.session_id) >= 0;
+        });
+
+        return isLoading ? (
+            <ActivityIndicator size="large" color="skyblue" animating={true} />
+        ) : (
+            <SessionList
+                listData={formatSessionData(favesList)}
+                currentNavigatorUID={"faves"}
+                faves={faves}
+            />
+        );
     }
-  }
-
-  componentDidMount = () => {
-    this.props.dispatch(fetchFaves());
-    realm.addListener('change', this.updateFaves);
-  }
-  updateFaves = () => {
-
-    this.props.dispatch(fetchFaves());
-  }
-  componentWillUnmount = () => {
-    realm.removeListener('change', this.updateFave);
-  }
-  render() {
-    const { sessionData, faves } = this.props;
-    const favesSession = sessionData.filter(session => {
-      return faves.indexOf(session.session_id) >= 0
-    });
-    return (
-      <Faves faves={favesSession} />
-    );
-  }
 }
-
 
 const mapStateToProps = state => {
-  return {
-    sessionData: state.session.sessionData,
-    faves: state.favourites.faves
-  }
-}
+    return {
+        sessionData: state.session.sessionData,
+        isLoading: state.session.isLoading,
+        faves: state.favourites.faves
+    };
+};
 
 export default connect(mapStateToProps)(FavesContainer);

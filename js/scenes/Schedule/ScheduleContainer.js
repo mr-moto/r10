@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { ActivityIndicator } from "react-native";
 
 import { fetchSession } from "../../redux/modules/sessions";
-import Schedule from "./Schedule";
+import { fetchFaves } from "../../redux/modules/faves"
+import SessionList from "../../components/SessionList";
 
-import { styles } from "./styles";
+
 
 class ScheduleContainer extends Component {
     componentDidMount() {
         this.props.dispatch(fetchSession());
+        this.props.dispatch(fetchFaves())
     }
 
     static route = {
@@ -20,13 +22,14 @@ class ScheduleContainer extends Component {
     };
 
     render() {
-        const { isLoading, sessionData } = this.props;
+        const { isLoading, sessionData, faves } = this.props;
         return isLoading ? (
             <ActivityIndicator size="large" color="skyblue" animating={true} />
         ) : (
-            <Schedule
-                data={sessionData}
+            <SessionList
+                listData={sessionData}
                 currentNavigatorUID={'schedule'}
+                faves={faves}
             />
         );
     }
@@ -34,7 +37,8 @@ class ScheduleContainer extends Component {
 
 const mapStateToProps = state => ({
     sessionData: state.session.sessionData,
-    isLoading: state.session.isLoading
+    isLoading: state.session.isLoading,
+    faves: state.favourites.faves
 });
 
 export default connect(mapStateToProps)(ScheduleContainer);
