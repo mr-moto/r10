@@ -7,8 +7,20 @@ import {
 import { Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
+import HeaderGradient from '../components/HeaderGradient/'
 import { colors, typography } from "../config/styles";
 import Router from "./routes";
+
+
+const defaultRouteConfig = {
+  navigationBar: {
+    tintColor: 'white',
+    titleStyle: {fontFamily: typography.fontRegular},
+    renderBackground: () => (
+      <HeaderGradient colors={[colors.purple, colors.red]}/>
+    )
+  }
+}
 
 class NavigationLayout extends Component {
     static route = {
@@ -37,6 +49,7 @@ class NavigationLayout extends Component {
                         id="schedule"
                         navigatorUID="schedule"
                         initialRoute={Router.getRoute("schedule")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </TabItem>
                 <TabItem
@@ -51,6 +64,7 @@ class NavigationLayout extends Component {
                         id="map"
                         navigatorUID="map"
                         initialRoute={Router.getRoute("map")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </TabItem>
                 <TabItem
@@ -65,6 +79,7 @@ class NavigationLayout extends Component {
                         id="faves"
                         navigatorUID="faves"
                         initialRoute={Router.getRoute("faves")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </TabItem>
                 <TabItem
@@ -79,6 +94,7 @@ class NavigationLayout extends Component {
                         id="about"
                         navigatorUID="about"
                         initialRoute={Router.getRoute("about")}
+                        defaultRouteConfig = {defaultRouteConfig}
                     />
                 </TabItem>
             </TabNavigation>
