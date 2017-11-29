@@ -97,6 +97,7 @@ const Session = ({ sessionData, speaker, faves }) => {
                     >
                         <TouchableOpacity
                             onPress={() => createFave(sessionData.session_id)}
+                            underlayColor={colors.purple}
                         >
                             <View
                                 pointerEvents="box-only"

@@ -47,7 +47,8 @@ export const styles = StyleSheet.create({
         fontFamily: typography.fontMainReg
     },
     separator: {
-        height: StyleSheet.hairlineWidth,
+        // height: StyleSheet.hairlineWidth,
+        height: 1,
         marginTop: 15,
         marginBottom: 15,
         backgroundColor: colors.medGrey
@@ -61,13 +62,15 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         padding: 15,
         fontFamily: typography.fontMainReg,
-        color: 'white'
+        color: 'white',
+        backgroundColor: "transparent"
     },
     buttonGradient: {
         maxWidth: 300,
+        width: "100%",
         flexDirection: "row",
         justifyContent: "center",
         borderRadius: 50,
-        overflow: "hidden"
+        // overflow: "hidden"
     }
 });
