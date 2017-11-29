@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import Session from "./Session";
 import { connect } from "react-redux";
-import { queryFaves } from "../../config/models";
 import PropTypes from "prop-types";
+import { View, ActivityIndicator } from "react-native";
 
+import { queryFaves } from "../../config/models";
+import Session from "./Session";
 import { fetchSpeaker } from "../../redux/modules/speaker";
 import { fetchFaves } from "../../redux/modules/faves";
 import realm from "../../config/models";
+
+import { styles } from './styles'
 
 class SessionContainer extends Component {
     static route = {
@@ -23,8 +26,16 @@ class SessionContainer extends Component {
         this.props.dispatch(fetchFaves());
     };
     render() {
-        const { sessionData, singleSpeaker, faves } = this.props;
-        return (
+        const { sessionData, singleSpeaker, faves, isLoading } = this.props;
+        return isLoading ? (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator
+                    size="large"
+                    color="skyblue"
+                    animating={true}
+                />
+            </View>
+        ) : (
             <Session
                 sessionData={sessionData}
                 speaker={singleSpeaker}
@@ -37,7 +48,8 @@ class SessionContainer extends Component {
 const mapStateToProps = state => {
     return {
         singleSpeaker: state.speaker.singleSpeaker,
-        faves: state.favourites.faves
+        faves: state.favourites.faves,
+        isLoading: state.session.isLoading
     };
 };
 
@@ -47,6 +59,6 @@ SessionContainer.PropTypes = {
     sessionData: PropTypes.object,
     fetchSpeaker: PropTypes.func.isRequired,
     fetchFaves: PropTypes.func.isRequired
-}
+};
 
 export default connect(mapStateToProps)(SessionContainer);

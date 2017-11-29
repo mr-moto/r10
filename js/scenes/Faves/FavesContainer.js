@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import PropTypes from "prop-types";
 
 import SessionList from "../../components/SessionList";
@@ -8,6 +8,8 @@ import realm from "../../config/models";
 import { fetchSession } from "../../redux/modules/sessions";
 import { fetchFaves } from "../../redux/modules/faves";
 import { formatSessionData } from "../../lib/dataHelpers";
+
+import { styles } from './styles';
 class FavesContainer extends Component {
     componentDidMount = () => {
         realm.addListener("change", this.refreshFaves);
@@ -35,7 +37,13 @@ class FavesContainer extends Component {
         });
 
         return isLoading ? (
-            <ActivityIndicator size="large" color="skyblue" animating={true} />
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator
+                    size="large"
+                    color="skyblue"
+                    animating={true}
+                />
+            </View>
         ) : (
             <SessionList
                 listData={formatSessionData(favesList)}

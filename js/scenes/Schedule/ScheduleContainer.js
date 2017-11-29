@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import PropTypes from "prop-types";
 
 import { fetchSession } from "../../redux/modules/sessions";
 import { fetchFaves } from "../../redux/modules/faves";
 import SessionList from "../../components/SessionList";
+
+import { styles } from './styles';
 
 class ScheduleContainer extends Component {
     componentDidMount() {
@@ -22,7 +24,9 @@ class ScheduleContainer extends Component {
     render() {
         const { isLoading, sessionData, faves } = this.props;
         return isLoading ? (
-            <ActivityIndicator size="large" color="skyblue" animating={true} />
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="skyblue" animating={true} />
+            </View>
         ) : (
             <SessionList
                 listData={sessionData}

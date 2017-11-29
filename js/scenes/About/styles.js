@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import { colors, typography } from "../../config/styles";
 
 const styles = StyleSheet.create({
     // styles here
@@ -29,6 +30,11 @@ const styles = StyleSheet.create({
     itemContent: {
         marginBottom: 20,
         fontFamily: "Montserrat-Light"
+    },
+    loadingContainer: {
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 

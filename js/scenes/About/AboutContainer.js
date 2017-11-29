@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import PropTypes from "prop-types";
 
 import { fetchConduct } from "../../redux/modules/conduct";
 import About from "./About";
+import { styles } from "./styles";
 
 class AboutContainer extends Component {
     componentDidMount() {
@@ -20,7 +21,19 @@ class AboutContainer extends Component {
     render() {
         const { isLoading, conductData } = this.props;
         return isLoading ? (
-            <ActivityIndicator size="large" color="skyblue" animating={true} />
+            <View
+                style={{
+                    height: "100%",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
+                <ActivityIndicator
+                    size="large"
+                    color="skyblue"
+                    animating={true}
+                />
+            </View>
         ) : (
             <About data={conductData} />
         );
