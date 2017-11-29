@@ -10,7 +10,7 @@ import { createFave, deleteFave } from '../../config/models';
 import { goToSpeaker } from '../../lib/navigationHelpers';
 import { colors } from '../../config/styles';
 
-import { styles } from './styles';
+import styles from './styles';
 
 const Session = ({ sessionData, speaker, faves }) => {
   const isFaved = faves.indexOf(sessionData.session_id) > -1;

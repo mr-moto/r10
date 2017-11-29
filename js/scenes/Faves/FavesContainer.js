@@ -9,7 +9,7 @@ import { fetchSession } from '../../redux/modules/sessions';
 import { fetchFaves } from '../../redux/modules/faves';
 import { formatSessionData } from '../../lib/dataHelpers';
 
-import { styles } from './styles';
+import styles from './styles';
 
 class FavesContainer extends Component {
   static route = {

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { goToSession } from '../../lib/navigationHelpers';
 
-import { styles } from './styles';
+import styles from './styles';
 
 const SessionList = ({ listData, currentNavigatorUID, faves }) => (listData.length > 0 ? (
   <SectionList

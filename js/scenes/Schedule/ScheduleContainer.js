@@ -7,7 +7,7 @@ import { fetchSession } from '../../redux/modules/sessions';
 import { fetchFaves } from '../../redux/modules/faves';
 import SessionList from '../../components/SessionList';
 
-import { styles } from './styles';
+import styles from './styles';
 
 class ScheduleContainer extends Component {
   static route = {

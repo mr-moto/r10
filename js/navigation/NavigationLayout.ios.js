@@ -3,7 +3,7 @@ import { StackNavigation, TabNavigation, TabNavigationItem as TabItem } from '@e
 import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import HeaderGradient from '../components/HeaderGradient/';
+import HeaderGradient from '../components/HeaderGradient';
 import { colors, typography } from '../config/styles';
 import Router from './routes';
 

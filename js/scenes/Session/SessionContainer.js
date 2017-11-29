@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, ActivityIndicator } from 'react-native';
 
-import { queryFaves, realm } from '../../config/models';
+import realm, { queryFaves } from '../../config/models';
 import Session from './Session';
 import { fetchSpeaker } from '../../redux/modules/speaker';
 import { fetchFaves } from '../../redux/modules/faves';
 
-import { styles } from './styles';
+import styles from './styles';
 
 class SessionContainer extends Component {
   static route = {
@@ -16,14 +16,17 @@ class SessionContainer extends Component {
       title: 'Session',
     },
   };
+
   componentDidMount = () => {
     realm.addListener('change', this.refreshFaves);
     this.props.dispatch(fetchSpeaker(this.props.sessionData.speaker));
     this.props.dispatch(fetchFaves());
   };
+
   refreshFaves = () => {
     this.props.dispatch(fetchFaves());
   };
+
   render() {
     const {
       sessionData, singleSpeaker, faves, isLoading,

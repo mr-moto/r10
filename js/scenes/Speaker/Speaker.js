@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 
 import { colors } from '../../config/styles';
-import { styles } from './styles';
+import styles from './styles';
 import CloseButton from '../../components/CloseButton';
 
 const Speaker = ({ speakerData }) => (

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { fetchConduct } from '../../redux/modules/conduct';
 import About from './About';
-import { styles } from './styles';
+import styles from './styles';
 
 class AboutContainer extends Component {
   static route = {

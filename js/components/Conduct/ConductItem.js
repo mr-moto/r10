@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
 
 import { colors } from '../../config/styles';
-import { styles } from './styles';
+import styles from './styles';
 
 class ConductItem extends Component {
   constructor() {
