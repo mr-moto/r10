@@ -1,3 +1,3 @@
-import HeaderGradient from "./HeaderGradient";
+import HeaderGradient from './HeaderGradient';
 
 export default HeaderGradient;

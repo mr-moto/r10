@@ -1,8 +1,6 @@
-import React from "react";
-import { Text } from "react-native";
+import React from 'react';
+import { Text } from 'react-native';
 
-const Maps = () => {
-    return <Text> mapsssssss </Text>;
-};
+const Maps = () => <Text> mapsssssss </Text>;
 
 export default Maps;

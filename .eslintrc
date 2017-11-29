@@ -1,11 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": "airbnb",
   "env": {
     "browser": true,
     "es6": true
   },
-  "plugins": ["react", "react-native"],
+  "plugins": ["react", "react-native", "jsx-a11y", "import"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -14,6 +14,7 @@
   },
   "rules": {
     "no-console": 1,
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

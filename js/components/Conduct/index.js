@@ -1,3 +1,3 @@
-import ConductList from "./ConductList";
+import ConductList from './ConductList';
 
 export default ConductList;

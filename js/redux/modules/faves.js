@@ -1,31 +1,29 @@
 import { queryFaves } from '../../config/models';
+
 const LOAD_FAVES = 'LOAD_FAVES';
 
-export const loadFaves = (favesData) => ({
+export const loadFaves = favesData => ({
   type: LOAD_FAVES,
-  payload: favesData
-})
+  payload: favesData,
+});
 
-export const fetchFaves = () => {
-  return (dispatch) => {
-    const favesData = queryFaves();
-    dispatch(loadFaves(favesData));
-  }
-}
+export const fetchFaves = () => (dispatch) => {
+  const favesData = queryFaves();
+  dispatch(loadFaves(favesData));
+};
 
 const initialState = {
-  faves:[]
-}
+  faves: [],
+};
 
-export default (state= initialState, action) => {
-  switch (action.type){
+export default (state = initialState, action) => {
+  switch (action.type) {
     case LOAD_FAVES:
       return {
         ...state,
-        faves: action.payload
-      }
+        faves: action.payload,
+      };
     default:
       return state;
   }
-}
-
+};

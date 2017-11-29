@@ -1,10 +1,8 @@
-import {
-  createRouter
-} from '@expo/ex-navigation';
+import { createRouter } from '@expo/ex-navigation';
 
 import About from '../scenes/About';
 import Schedule from '../scenes/Schedule';
-import Session from '../scenes/Session'
+import Session from '../scenes/Session';
 import Faves from '../scenes/Faves';
 import Maps from '../scenes/Map';
 import Speaker from '../scenes/Speaker';
@@ -17,7 +15,7 @@ const Router = createRouter(() => ({
   session: () => Session,
   faves: () => Faves,
   map: () => Maps,
-  speaker: () => Speaker
+  speaker: () => Speaker,
 }));
 
 export default Router;
